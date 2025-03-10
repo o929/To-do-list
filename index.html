@@ -178,10 +178,10 @@
             </ul>
 
         </div>
+        <a href="https://o929.github.io/My-first-project/">Here's a Link to a another website 1</a><br>
+        <a href="https://o929.github.io/My-second-project/">Here's a Link to a another website 2</a><br>
+        <a href="https://o929.github.io/My-Third-project/">Here's a Link to a full responsive website with html css and javascript</a>
     </div>
-        <a href="https://o929.github.io/My-first-project/">Here's a Link to a website 1</a><br>
-        <a href="https://o929.github.io/My-second-project/">Here's a Link to a website 2</a><br>
-        <a href="https://o929.github.io/My-Third-project/">Here's a Link to a full responsive website with html css and javascript </a>
     <script>
         let inputBox = document.getElementById("input-box");
         let listCont = document.getElementById("list-container");
@@ -195,6 +195,7 @@
                 li.innerHTML = inputBox.value;
                 li.addEventListener("click",()=>{
                     li.classList.toggle("done")
+                    saveData()
                 })
                 listCont.appendChild(li);
                 let span = document.createElement("span");
@@ -202,18 +203,29 @@
                 span.id = "span"
                 span.style.textDecorationLine = "none"
                 li.appendChild(span)
+                // saveData()
             }
 
             inputBox.addEventListener("input",()=>{
                 p.style.display = "none"
             })
             inputBox.value = '';
+            saveData()
         }
         listCont.addEventListener("click", function (e) {
             if (e.target.tagName === "SPAN") {
                 e.target.parentElement.remove()
+                saveData()
             }
         })
+        function saveData(){
+            localStorage.setItem("data", listCont.innerHTML)
+        }
+        function showData(){
+            listCont.innerHTML = localStorage.getItem("data")
+        }
+        showData();
+        
     </script>
 </body>
 
